@@ -87,7 +87,7 @@ class TripCrew:
             process=Process.sequential,
             full_output=True,
             max_rpm=15,
-            verbose=True
+            verbose=False
         )
 
         return crew.kickoff()
@@ -196,3 +196,4 @@ if len(files_md) == len(files):
         st.markdown(load_markdown(os.path.join(OUTPUT_DIR, "relatorio_local.md")))
     with tab4:
         st.markdown(load_markdown(os.path.join(OUTPUT_DIR, "relatorio_logistica.md")))
+
