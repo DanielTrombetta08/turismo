@@ -196,4 +196,20 @@ if len(files_md) == len(files):
         st.markdown(load_markdown(os.path.join(OUTPUT_DIR, "relatorio_local.md")))
     with tab4:
         st.markdown(load_markdown(os.path.join(OUTPUT_DIR, "relatorio_logistica.md")))
+        
+# Mostrar links para abrir/baixar PDFs
+st.subheader("📂 Seus PDFs gerados")
+
+for md_file, pdf_file in files.items():
+    pdf_path = os.path.join(OUTPUT_DIR, pdf_file)
+    if os.path.exists(pdf_path):
+        with open(pdf_path, "rb") as f:
+            pdf_bytes = f.read()
+            st.download_button(
+                label=f"⬇️ Baixar {pdf_file}",
+                data=pdf_bytes,
+                file_name=pdf_file,
+                mime="application/pdf"
+            )
+        st.markdown(f"[📄 Abrir {pdf_file}](viagem/{pdf_file})", unsafe_allow_html=True)
 
