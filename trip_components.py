@@ -100,6 +100,7 @@ class TripTasks:
                 Identificar marcos culturais, pontos históricos, locais de entretenimento, experiências gastronômicas e quaisquer atividades que se alinhem às preferências do usuário.
                 Também destacar eventos e festivais sazonais que podem ser de interesse durante a visita do viajante.
                 Use as ferramentas disponíveis para buscar fontes atualizadas e confiáveis.
+                Retorne em português.
 
                 Viajando de: {from_city}
                 Para: {destination_city}
@@ -137,6 +138,7 @@ class TripTasks:
                 Interesses: {interests}
 
                 Avalie preço, localização, conveniência e segurança.
+                Retorne em português.
                 """
             ),
             expected_output=dedent(
@@ -160,6 +162,7 @@ class TripTasks:
                 Esta tarefa sintetiza todas as informações para criar o roteiro final da viagem.
                 Com base nas informações dos outros agentes, desenvolva um itinerário detalhado.
                 Cada dia deve conter atividades, clima, transporte, refeições e estimativa de gastos.
+                Retorne em português.
 
                 Destino: {destination_city}
                 Interesses: {interests}
@@ -215,3 +218,4 @@ class TripTasks:
             agent=agent,
             output_file='guia_comunicacao.md',
         )
+
