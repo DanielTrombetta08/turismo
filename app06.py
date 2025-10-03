@@ -30,9 +30,36 @@ files = {
 st.set_page_config(page_title="Planejamento de Viagens", page_icon="🌍")
 st.title("🌍 Planejamento de Viagens")
 
-# Limpa session_state sempre que a página é carregada
+# Limpa session_state
 for key in list(st.session_state.keys()):
     del st.session_state[key]
+
+# Remove arquivos antigos (MD e PDF) gerados anteriormente
+for md_file, pdf_file in files.items():
+    # PDF na pasta OUTPUT_DIR
+    pdf_path = os.path.join(OUTPUT_DIR, pdf_file)
+    if os.path.exists(pdf_path):
+        try:
+            os.remove(pdf_path)
+        except Exception as e:
+            print(f"Não foi possível remover {pdf_path}: {e}")
+
+    # MD dentro da pasta OUTPUT_DIR (caso tenham sido movidos)
+    md_in_output = os.path.join(OUTPUT_DIR, md_file)
+    if os.path.exists(md_in_output):
+        try:
+            os.remove(md_in_output)
+        except Exception as e:
+            print(f"Não foi possível remover {md_in_output}: {e}")
+
+    # MD no diretório corrente (antes de mover)
+    md_in_root = md_file
+    if os.path.exists(md_in_root):
+        try:
+            os.remove(md_in_root)
+        except Exception as e:
+            print(f"Não foi possível remover {md_in_root}: {e}")
+
 
 # --------------------- CLASSE DE EXECUÇÃO DA VIAGEM ---------------------
 class TripCrew:
@@ -265,4 +292,5 @@ for md_file, pdf_file in files.items():
                 mime="application/pdf"
             )
         st.markdown(f"[📄 Abrir {pdf_file}](viagem/{pdf_file})", unsafe_allow_html=True)
+
 
