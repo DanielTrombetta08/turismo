@@ -30,6 +30,10 @@ files = {
 st.set_page_config(page_title="Planejamento de Viagens", page_icon="🌍")
 st.title("🌍 Planejamento de Viagens")
 
+# Limpa session_state sempre que a página é carregada
+for key in list(st.session_state.keys()):
+    del st.session_state[key]
+
 # --------------------- CLASSE DE EXECUÇÃO DA VIAGEM ---------------------
 class TripCrew:
     def __init__(self, from_city, destination_city, date_from, date_to, interests):
@@ -261,3 +265,4 @@ for md_file, pdf_file in files.items():
                 mime="application/pdf"
             )
         st.markdown(f"[📄 Abrir {pdf_file}](viagem/{pdf_file})", unsafe_allow_html=True)
+
